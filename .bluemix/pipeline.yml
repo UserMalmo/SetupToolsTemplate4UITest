@@ -1,0 +1,23 @@
+---
+stages:
+- name: ScriptStage
+  inputs:
+  - type: git
+    branch: master
+    service: ${REPO}
+  triggers:
+  - type: commit
+  properties:
+  - name: WEB_UNDER_TEST
+    value: "http://atesttool.mybluemix.net"
+    type: text
+  jobs:
+  - name: CurlScriptJob
+    type: builder
+    script: |
+      #!/bin/bash
+      echo -e "----------------------------------------------------------------------------------"
+      echo "Using curl to test site: $WEB_UNDER_TEST"
+      echo "------------------------------------ CONTENTS ------------------------------------"
+      curl $WEB_UNDER_TEST
+      #curl --help
