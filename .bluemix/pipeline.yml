@@ -8,8 +8,8 @@ stages:
   triggers:
   - type: commit
   properties:
-  - name: WEB_UNDER_TEST
-    value: "http://atesttool.mybluemix.net"
+  - name: API_UNDER_TEST
+    value: "http://atestapi.mybluemix.net/"
     type: text
   jobs:
   - name: CurlScriptJob
@@ -17,7 +17,6 @@ stages:
     script: |
       #!/bin/bash
       echo -e "----------------------------------------------------------------------------------"
-      echo "Using curl to test site: $WEB_UNDER_TEST"
-      echo "------------------------------------ CONTENTS ------------------------------------"
-      curl $WEB_UNDER_TEST
+      echo "Using curl to test site: $API_UNDER_TEST"
+      curl http://atestapi.mybluemix.net/api.php?command=testTipOfTheDay&whichDay=test
       #curl --help
