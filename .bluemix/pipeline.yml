@@ -9,7 +9,7 @@ stages:
   - type: commit
   properties:
   - name: API_UNDER_TEST
-    value: "http://atestapi.mybluemix.net/"
+    value: "http://example.com"
     type: text
   jobs:
   - name: CurlScriptJob
@@ -18,5 +18,5 @@ stages:
       #!/bin/bash
       echo -e "----------------------------------------------------------------------------------"
       echo "Using curl to test site: $API_UNDER_TEST"
-      curl http://atestapi.mybluemix.net/api.php?command=testTipOfTheDay&whichDay=test
+      curl -r 0-63 $API_UNDER_TEST
       #curl --help
